@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<SplitPane dividerPositions="0.43833017077798864" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" orientation="VERTICAL" prefHeight="-1.0" prefWidth="-1.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ai12.maven_ai12.game.GameController">
+  <items>
+    <StackPane fx:id="GamePane" minHeight="-1.0" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="GamePane">
+      <children>
+        <AnchorPane fx:id="abandonPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+          <children>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="-0.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.5">
+              <children>
+                <VBox alignment="CENTER" prefHeight="203.0" prefWidth="291.0">
+                  <children>
+                    <Text scaleX="1.2337685549545165" scaleY="1.2900375628057723" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you want to leave this game ?" VBox.vgrow="SOMETIMES" />
+                  </children>
+                </VBox>
+                <VBox alignment="CENTER" prefHeight="202.5" prefWidth="373.0">
+                  <children>
+                    <Button mnemonicParsing="false" onAction="#confirmAbandon" prefHeight="30.0" prefWidth="208.0" text="Abandon and close" />
+                    <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancelAbandon" prefHeight="30.0" prefWidth="208.0" text="Go back to game" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+        <AnchorPane fx:id="endGamePane" prefHeight="200.0" prefWidth="200.0" visible="false">
+          <children>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="-0.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.5">
+              <children>
+                <VBox alignment="CENTER" prefHeight="203.0" prefWidth="291.0">
+                  <children>
+                    <Text id="endGameMessage" fx:id="playerResult" scaleX="1.2337685549545165" scaleY="1.2900375628057723" strokeType="OUTSIDE" strokeWidth="0.0" text="PlayerResult" VBox.vgrow="SOMETIMES">
+                      <font>
+                        <Font size="12.0" />
+                      </font>
+                      <VBox.margin>
+                        <Insets bottom="30.0" />
+                      </VBox.margin>
+                    </Text>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Winners :">
+                      <font>
+                        <Font size="16.0" fx:id="x1" />
+                      </font>
+                    </Text>
+                    <Text fx:id="winnersList" font="$x1" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+                  </children>
+                </VBox>
+                <VBox alignment="CENTER" prefHeight="202.5" prefWidth="373.0">
+                  <children>
+                    <Button mnemonicParsing="false" onAction="#saveAndCloseGame" prefHeight="30.0" prefWidth="208.0" text="Save and close">
+                      <VBox.margin>
+                        <Insets bottom="10.0" />
+                      </VBox.margin>
+                    </Button>
+                    <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#closeGame" prefHeight="30.0" prefWidth="208.0" text="Close" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+      </children>
+    </StackPane>
+    <AnchorPane minWidth="705.0" prefHeight="321.0" prefWidth="705.0">
+      <children>
+        <AnchorPane maxHeight="50.0" minHeight="50.0" minWidth="688.0" prefHeight="50.0" prefWidth="688.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="8.0">
+          <children>
+            <GridPane fx:id="gameBand" layoutY="-8.0" minWidth="-1.0" prefHeight="50.0" prefWidth="-1.0" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+              <children>
+                <Pane maxWidth="-1.0" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #d8d8d8&#10;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                  <children>
+                    <ImageView fitHeight="40.0" fitWidth="26.559531802222843" layoutX="30.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@timer.png" />
+                      </image>
+                    </ImageView>
+                    <Text fx:id="timerText" font="$x1" layoutX="65.0" layoutY="31.0" scaleX="1.010888476853415" scaleY="0.9867840293266704" strokeType="OUTSIDE" strokeWidth="0.0" text="XX:XX" wrappingWidth="50.0" />
+                  </children>
+                </Pane>
+                <Pane prefHeight="46.0" prefWidth="-1.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                  <children>
+                    <Button fx:id="leaveButton" layoutX="25.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="91.0" text="Quitter" />
+                  </children>
+                </Pane>
+                <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                  <children>
+                    <Text fx:id="currentPlayerName" font="$x1" scaleX="1.0013431833445265" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current player : currentPlayerName" StackPane.alignment="CENTER">
+                      <StackPane.margin>
+                        <Insets left="5.0" />
+                      </StackPane.margin>
+                    </Text>
+                  </children>
+                </StackPane>
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <GridPane fx:id="replayBand" layoutY="-8.0" minWidth="-1.0" prefHeight="50.0" prefWidth="-1.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+              <children>
+                <Pane maxWidth="-1.0" minWidth="-1.0" prefHeight="50.0" prefWidth="305.0" style="-fx-background-color: #d8d8d8&#10;" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="0">
+                  <children>
+                    <Text fx:id="currentPlayerNameReplay" font="$x1" layoutX="17.0" layoutY="32.0" scaleX="1.0013431833445265" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current player : currentPlayerName" />
+                  </children>
+                </Pane>
+                <Pane prefHeight="46.0" prefWidth="-1.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                  <children>
+                    <Button fx:id="leaveButtonReplay" layoutX="25.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="91.0" text="Leave" />
+                  </children>
+                </Pane>
+                <StackPane prefHeight="50.0" prefWidth="289.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                  <children>
+                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="&#10;" StackPane.alignment="CENTER">
+                      <children>
+                        <ImageView fx:id="previousIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                          <image>
+                            <Image url="@previous.png" />
+                          </image>
+                        </ImageView>
+                        <ImageView fx:id="pauseIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                          <image>
+                            <Image url="@pause.png" />
+                          </image>
+                          <HBox.margin>
+                            <Insets left="20.0" right="20.0" />
+                          </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="nextIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@next.png" />
+                          </image>
+                        </ImageView>
+                      </children>
+                      <StackPane.margin>
+                        <Insets right="10.0" />
+                      </StackPane.margin>
+                    </HBox>
+                  </children>
+                </StackPane>
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.14184397163121" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="39.858156028368796" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+          </children>
+        </AnchorPane>
+        <SplitPane dividerPositions="0.7197724039829303" prefHeight="215.0" prefWidth="688.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+          <items>
+            <AnchorPane minHeight="-1.0" minWidth="-1.0" prefHeight="227.9998779296875" prefWidth="-1.0">
+              <children>
+                <GridPane fx:id="usersList" prefHeight="-1.0" prefWidth="-1.0" visible="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <children>
+<!--  
+                    <ScrollPane id="" fitToHeight="true" fitToWidth="true" prefHeight="46.0" prefWidth="247.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                      <content>
+                        <ListView fx:id="observersList" onMouseClicked="#displayProfile" prefHeight="-1.0" prefWidth="-1.0" />
+                      </content>
+                    </ScrollPane>
+                    <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="46.0" prefWidth="247.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                      <content>
+                        <ListView id="players_list" fx:id="playersList" onMouseClicked="#displayProfile" prefHeight="-1.0" prefWidth="-1.0" />
+                      </content>
+-->
+                    <ScrollPane fx:id="observersList" fitToHeight="true" fitToWidth="true" prefHeight="46.0" prefWidth="247.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                    </ScrollPane>
+                    <ScrollPane fx:id="playersList" fitToHeight="true" fitToWidth="true" prefHeight="46.0" prefWidth="247.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+<!--  -->
+                    </ScrollPane>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Players" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Observers" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                  </children>
+                  <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="-1.0" percentWidth="100.0" prefWidth="-1.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                    <RowConstraints maxHeight="30.0" minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="30.0" minHeight="10.0" percentHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" percentHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                </GridPane>
+                <AnchorPane fx:id="userProfile" prefHeight="-1.0" prefWidth="-1.0" visible="false" AnchorPane.bottomAnchor="9.5" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.5">
+                  <children>
+                    <Button mnemonicParsing="false" onAction="#closeProfile" text="X" textOverrun="CLIP" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    <VBox alignment="CENTER" prefHeight="174.5" prefWidth="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+                      <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                          <children>
+                            <Text scaleX="1.0" scaleY="0.9999937347040251" strokeType="OUTSIDE" strokeWidth="0.0" text="Login : ">
+                              <font>
+                                <Font name="System Bold" size="12.0" fx:id="x2" />
+                              </font>
+                            </Text>
+                            <Text fx:id="profilePseudo" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                          </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                          <children>
+                            <Text font="$x2" scaleX="1.0" scaleY="0.9999937347040251" strokeType="OUTSIDE" strokeWidth="0.0" text="Firstname : " />
+                            <Text fx:id="profileFirstname" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                          </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                          <children>
+                            <Text font="$x2" scaleX="1.0" scaleY="0.9999937347040251" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name : " />
+                            <Text fx:id="profileName" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                          </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                          <children>
+                            <Text font="$x2" scaleX="1.0" scaleY="0.9999937347040251" strokeType="OUTSIDE" strokeWidth="0.0" text="Age : " />
+                            <Text fx:id="profileAge" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+                          </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                          <children>
+                            <Text font="$x2" scaleX="1.0" scaleY="0.9999937347040251" strokeType="OUTSIDE" strokeWidth="0.0" text="Games played : " />
+                            <Text fx:id="profileNbGamePlayed" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+                          </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                          <children>
+                            <Text font="$x2" scaleX="1.0" scaleY="0.9999999999607461" strokeType="OUTSIDE" strokeWidth="0.0" text="Games won : " />
+                            <Text fx:id="profileNbGameWon" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+                          </children>
+                        </HBox>
+                      </children>
+                    </VBox>
+                  </children>
+                </AnchorPane>
+              </children>
+            </AnchorPane>
+            <AnchorPane minHeight="-1.0" minWidth="-1.0" prefHeight="269.0" prefWidth="-1.0">
+              <children>
+                <Text layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat" />
+                <TextArea fx:id="messageListInput" editable="false" prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" />
+                <TextArea fx:id="messageInput" prefHeight="40.0" prefWidth="-1.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="100.0" />
+                <Button fx:id="sendButton" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Send" AnchorPane.bottomAnchor="17.5" AnchorPane.rightAnchor="10.0" />
+              </children>
+            </AnchorPane>
+          </items>
+        </SplitPane>
+      </children>
+    </AnchorPane>
+  </items>
+</SplitPane>

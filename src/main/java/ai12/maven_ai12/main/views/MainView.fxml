@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <bottom>
+      <BorderPane prefHeight="40.0" prefWidth="800.0" style="-fx-background-color: #dddddd;" BorderPane.alignment="CENTER">
+         <left>
+            <FlowPane alignment="CENTER_LEFT" hgap="10.0" prefHeight="40.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="mLogOutButton" mnemonicParsing="false" text="Log out" />
+                  <Label fx:id="mLogInLabel" prefHeight="17.0" prefWidth="307.0" text="CosmicArtifact" />
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </FlowPane>
+         </left>
+         <right>
+            <Pane prefHeight="40.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+               <children>
+                  <FlowPane fx:id="mConnectedFlowPane" alignment="CENTER_RIGHT" hgap="10.0" prefHeight="40.0" prefWidth="400.0">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                     <children>
+                        <Label fx:id="mIpPortConnectedLabel" text="192.168.1.18 : 6767" />
+                        <Button fx:id="mDisconnectButton" mnemonicParsing="false" text="Disconnect" />
+                     </children>
+                  </FlowPane>
+                  <FlowPane fx:id="mDisconnectedFlowPane" alignment="CENTER_RIGHT" disable="true" hgap="10.0" prefHeight="40.0" prefWidth="400.0" visible="false">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                     <children>
+                        <TextField fx:id="mIpTextField" prefHeight="27.0" prefWidth="126.0" />
+                        <Label text=":" />
+                        <TextField fx:id="mPortTextField" prefHeight="27.0" prefWidth="60.0" />
+                        <Button fx:id="mConnectButton" mnemonicParsing="false" text="Connect" />
+                     </children>
+                  </FlowPane>
+               </children>
+            </Pane>
+         </right>
+      </BorderPane>
+   </bottom>
+   <center>
+      <Pane prefHeight="560.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <TabPane prefHeight="560.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab style="-fx-pref-height: 50; -fx-pref-width: 250;" text="Play">
+                     <content>
+                        <Pane>
+                           <children>
+                            <BorderPane fx:id="mPlayBorderPane" prefHeight="510.0" prefWidth="800.0">
+                              <left>
+                                 <Pane prefHeight="504.0" prefWidth="399.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                       <Label layoutX="37.0" layoutY="33.0" text="Games :">
+                                          <font>
+                                             <Font size="22.0" />
+                                          </font>
+                                       </Label>
+                                       <ListView fx:id="mGamesListView" layoutX="37.0" layoutY="71.0" prefHeight="270.0" prefWidth="330.0" />
+                                       <Button fx:id="mJoinAsViewerButton" layoutX="59.0" layoutY="360.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" text="Join as viewer" />
+                                       <Button fx:id="mJoinAsPlayerButton" layoutX="214.0" layoutY="360.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" text="Join as player" />
+                                          <Pane fx:id="mInfoDeniedPane" disable="true" layoutY="428.0" prefHeight="53.0" prefWidth="265.0" style="-fx-background-color: #dddddd #dddddd;" visible="false">
+                                             <children>
+                                                <Text layoutX="19.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You cannot enter the game." textAlignment="CENTER" wrappingWidth="227.21875">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </Pane>
+                                          <Pane fx:id="mGameInfoPane" disable="true" layoutX="35.0" layoutY="412.0" prefHeight="84.0" prefWidth="330.0" style="-fx-background-color: white; -fx-border-color: grey;" visible="false">
+                                             <children>
+                                                <Text fx:id="mGameInfoNameText" layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Text>
+                                                <ImageView fitHeight="20.0" fitWidth="18.0" layoutX="19.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/players.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Text fx:id="mGameInfoNumberOfPlayersText" layoutX="46.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                <ImageView fitHeight="18.0" fitWidth="15.0" layoutX="21.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/horloge.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Text fx:id="mGameInfoTimeText" layoutX="46.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                <ImageView fitHeight="16.0" fitWidth="21.0" layoutX="166.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/oeil.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Text fx:id="mGameInfoViewersText" layoutX="195.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="167.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/bombe.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Text fx:id="mGameInfoDifficultyText" layoutX="195.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="117.25390625" />
+                                             </children>
+                                          </Pane>
+                                    </children>
+                                 </Pane>
+                              </left>
+                              <right>
+                                 <Pane prefHeight="504.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                       <Label layoutX="34.0" layoutY="35.0" text="Users :">
+                                          <font>
+                                             <Font size="22.0" />
+                                          </font>
+                                       </Label>
+                                       <ListView fx:id="mConnectedUsersListView" layoutX="33.0" layoutY="71.0" prefHeight="360.0" prefWidth="330.0" />
+                                       <Button fx:id="mCreateGameButton" layoutX="144.0" layoutY="448.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" text="Create game" />
+                                    </children>
+                                 </Pane>
+                              </right>
+                           </BorderPane>
+                            <BorderPane fx:id="mDisconnectBorderPane" disable="true" prefHeight="510.0" prefWidth="800.0" visible="false">
+                               <center>
+                                   <Text fx:id="mDisconnectedText" text="You are disconnected" textAlignment="CENTER" />
+                               </center>
+                            </BorderPane>
+                           </children>
+                        </Pane>
+                     </content>
+                  </Tab>
+                <Tab style="-fx-pref-height: 50; -fx-pref-width: 250;" text="Replay">
+                     <content>
+                        <BorderPane prefHeight="510.0" prefWidth="800.0">
+                           <center>
+                              <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label layoutX="237.0" layoutY="39.0" text="Replays :">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </Label>
+                                    <ListView fx:id="mReplaysListView" layoutX="235.0" layoutY="77.0" prefHeight="345.0" prefWidth="330.0" />
+                                    <Button fx:id="mWatchReplayButton" layoutX="261.0" layoutY="442.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" text="Watch" />
+                                    <Button fx:id="mDeleteReplayButton" layoutX="418.0" layoutY="442.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" text="Delete" />
+                                 </children>
+                              </Pane>
+                           </center>
+                        </BorderPane>
+                     </content>
+                  </Tab>
+                  <Tab style="-fx-pref-height: 50; -fx-pref-width: 250;" text="Profile">
+                     <content>
+                        <Pane fx:id="mOwnProfilePane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;">
+                           <children>
+                              <Label fx:id="mOwnProfileLoginLabel" layoutX="46.0" layoutY="41.0" prefHeight="30.0" prefWidth="400.0" text="CosmicArtifact">
+                                 <font>
+                                    <Font name="System Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="422.0" layoutY="182.0" text="Game played :" />
+                              <Label layoutX="473.0" layoutY="205.0" text="Wins :" />
+                              <Label layoutX="456.0" layoutY="228.0" text="Defeats :" />
+                              <Label layoutX="457.0" layoutY="251.0" text="Forfeits :" />
+                              <Label fx:id="mOwnProfileGamePlayedLabel" layoutX="522.0" layoutY="182.0" prefHeight="17.0" prefWidth="109.0" text="999999" />
+                              <Label fx:id="mOwnProfileGameWinLabel" layoutX="522.0" layoutY="205.0" prefHeight="17.0" prefWidth="109.0" text="999999" />
+                              <Label fx:id="mOwnProfileGameDefeatLabel" layoutX="522.0" layoutY="228.0" prefHeight="17.0" prefWidth="109.0" text="999999" />
+                              <Label fx:id="mOwnProfileGameForfeitLabel" layoutX="522.0" layoutY="251.0" prefHeight="17.0" prefWidth="109.0" text="999999" />
+                              <Label fx:id="mOwnProfileNamesLabel" alignment="CENTER" layoutX="131.0" layoutY="203.0" prefHeight="17.0" prefWidth="169.0" text="Hugo DRIVIERE" />
+                              <Label fx:id="mOwnProfileAgeLabel" alignment="CENTER" layoutX="131.0" layoutY="233.0" prefHeight="17.0" prefWidth="169.0" text="23 years old" />
+                              <Button fx:id="mOwnProfileUpateProfileButton" layoutX="160.0" layoutY="300.0" mnemonicParsing="false" text="Update profile" />
+                           </children>
+                        </Pane>
+                     </content></Tab>
+              </tabs>
+            </TabPane>
+            <Pane fx:id="mBackgroundPane" disable="true" opacity="0.7" prefHeight="560.0" prefWidth="800.0" style="-fx-background-color: black;" visible="false" />
+            <Pane fx:id="mCreateGamePane" disable="true" layoutX="100.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" visible="false">
+               <children>
+                  <Label layoutX="63.0" layoutY="56.0" prefHeight="17.0" prefWidth="88.0" text="Name :" />
+                  <TextField fx:id="mGameNameTextField" layoutX="75.0" layoutY="83.0" />
+                  <Label layoutX="63.0" layoutY="148.0" prefHeight="17.0" prefWidth="138.0" text="Number of players :" />
+                  <TextField fx:id="mPlayersNumberTextField" layoutX="75.0" layoutY="179.0" />
+                  <Label layoutX="63.0" layoutY="253.0" prefHeight="17.0" prefWidth="179.0" text="Time between each shot :" />
+                  <TextField fx:id="mShotTimeTextField" layoutX="75.0" layoutY="283.0" prefHeight="27.0" prefWidth="138.0" />
+                  <Label layoutX="218.0" layoutY="288.0" prefHeight="17.0" prefWidth="24.0" text="sec" />
+                  <Label layoutX="364.0" layoutY="55.0" prefHeight="17.0" prefWidth="88.0" text="Difficulty :" />
+                  <RadioButton layoutX="393.0" layoutY="87.0" mnemonicParsing="false" text="EASY">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="difficultyGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton layoutX="393.0" layoutY="117.0" mnemonicParsing="false" selected="true" text="MEDIUM" toggleGroup="$difficultyGroup" />
+                  <RadioButton layoutX="393.0" layoutY="147.0" mnemonicParsing="false" text="HARD" toggleGroup="$difficultyGroup" />
+                  <Label fx:id="mDifficultyInfoLabel" alignment="CENTER" layoutX="356.0" layoutY="184.0" prefHeight="17.0" prefWidth="150.0" text="16x16, 40 BOMBS">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="mAllowViewersCheckbox" layoutX="372.0" layoutY="244.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="117.0" text="Allow viewers" />
+                  <Button fx:id="mStartGameButton" layoutX="332.0" layoutY="310.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Start" />
+                  <Text fx:id="mCreateGameErrorText" fill="RED" layoutX="66.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="469.0" />
+               </children>
+            </Pane>
+             <BorderPane fx:id="mWaitingEntryGamePane" disable="true" layoutX="325.0" layoutY="240.0" prefHeight="80.0" prefWidth="150.0" style="-fx-background-color: white;" visible="false">
+                 <center>
+                     <Text fx:id="mToto" layoutX="5.0" layoutY="5.0" text="Waiting..." textAlignment="CENTER">
+                        <font>
+                            <Font name="System Bold" size="25.0" />
+                        </font>
+                     </Text>
+                 </center>
+             </BorderPane>
+            <Pane fx:id="mUserProfilPane" disable="true" layoutX="100.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" visible="false">
+               <children>
+                  <Label fx:id="mUserLoginLabel" layoutX="46.0" layoutY="41.0" prefHeight="30.0" prefWidth="400.0" text="CosmicArtifact">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="342.0" layoutY="157.0" text="Game played :" />
+                  <Label layoutX="393.0" layoutY="180.0" text="Wins :" />
+                  <Label layoutX="376.0" layoutY="203.0" text="Defeats :" />
+                  <Label layoutX="377.0" layoutY="226.0" text="Forfeits :" />
+                  <Label fx:id="mGamePlayedLabel" layoutX="442.0" layoutY="157.0" prefHeight="17.0" prefWidth="109.0" text="999999" />
+                  <Label fx:id="mGameWinLabel" layoutX="442.0" layoutY="180.0" prefHeight="17.0" prefWidth="109.0" text="999999" />
+                  <Label fx:id="mGameDefeatLabel" layoutX="442.0" layoutY="203.0" prefHeight="17.0" prefWidth="109.0" text="999999" />
+                  <Label fx:id="mGameForfeitLabel" layoutX="442.0" layoutY="226.0" prefHeight="17.0" prefWidth="109.0" text="999999" />
+                  <Label fx:id="mNamesLabel" alignment="CENTER" layoutX="77.0" layoutY="212.0" prefHeight="17.0" prefWidth="169.0" text="Hugo DRIVIERE" />
+                  <Label fx:id="mAgeLabel" alignment="CENTER" layoutX="77.0" layoutY="239.0" prefHeight="17.0" prefWidth="169.0" text="23 years old" />
+               </children>
+            </Pane>
+            <Pane fx:id="mUpdateProfilePane" disable="true" layoutX="100.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" visible="false">
+               <children>
+                  <Label layoutX="234.0" layoutY="26.0" text="Update profile">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="220.0" layoutY="77.0" text="Username : " />
+                  <Label fx:id="mUpdateProfileUsernameLabel" layoutX="300.0" layoutY="77.0" text="username" />
+                  <Label layoutX="197.0" layoutY="110.0" text="Old password : " />
+                  <Label layoutX="194.0" layoutY="146.0" text="New password : " />
+                  <PasswordField fx:id="mUpdateProfileOldPasswordField" layoutX="301.0" layoutY="105.0" />
+                  <PasswordField fx:id="mUpdateProfileNewPasswordField" layoutX="301.0" layoutY="143.0" />
+                  <Label layoutX="175.0" layoutY="183.0" text="Repeat password : " />
+                  <PasswordField fx:id="mUpdateProfileRepeatPasswordField" layoutX="301.0" layoutY="178.0" />
+                  <Label layoutX="219.0" layoutY="222.0" text="Last name : " />
+                  <TextField fx:id="mUpdateProfileLastNameField" layoutX="301.0" layoutY="217.0" />
+                  <Label layoutX="218.0" layoutY="258.0" text="First name : " />
+                  <TextField fx:id="mUpdateProfileFirstNameField" layoutX="301.0" layoutY="253.0" />
+                  <Label layoutX="203.0" layoutY="292.0" text="Date of birth : " />
+                  <DatePicker fx:id="mUpdateProfileDateOfBirthPicker" layoutX="300.0" layoutY="287.0" />
+                  <Button fx:id="mUpdateProfileUpdateButton" layoutX="265.0" layoutY="337.0" mnemonicParsing="false" text="Update" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
